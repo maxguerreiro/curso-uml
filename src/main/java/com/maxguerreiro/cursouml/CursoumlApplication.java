@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.maxguerreiro.cursouml.domain.Categoria;
 import com.maxguerreiro.cursouml.domain.Cidade;
+import com.maxguerreiro.cursouml.domain.Cliente;
+import com.maxguerreiro.cursouml.domain.Endereco;
 import com.maxguerreiro.cursouml.domain.Estado;
 import com.maxguerreiro.cursouml.domain.Produto;
+import com.maxguerreiro.cursouml.domain.enums.TipoCliente;
 import com.maxguerreiro.cursouml.repositories.CategoriaRepository;
 import com.maxguerreiro.cursouml.repositories.CidadeRepository;
+import com.maxguerreiro.cursouml.repositories.ClienteRepository;
+import com.maxguerreiro.cursouml.repositories.EnderecoRepository;
 import com.maxguerreiro.cursouml.repositories.EstadoRepository;
 import com.maxguerreiro.cursouml.repositories.ProdutoRepository;
 
@@ -30,6 +35,13 @@ public class CursoumlApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoumlApplication.class, args);
@@ -71,6 +83,18 @@ public class CursoumlApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Luan Santos", "luan@gmail.com", "22356652", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("86214658", "92462963"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardin", "9888556", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avanida Matos", "105", "Sala 800", "Centro", "9586558", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 	}
 
 }
