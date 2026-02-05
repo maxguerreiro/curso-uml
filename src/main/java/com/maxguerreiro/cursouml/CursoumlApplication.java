@@ -13,6 +13,7 @@ import com.maxguerreiro.cursouml.domain.Cidade;
 import com.maxguerreiro.cursouml.domain.Cliente;
 import com.maxguerreiro.cursouml.domain.Endereco;
 import com.maxguerreiro.cursouml.domain.Estado;
+import com.maxguerreiro.cursouml.domain.ItemPedido;
 import com.maxguerreiro.cursouml.domain.Pagamento;
 import com.maxguerreiro.cursouml.domain.PagamentoBoleto;
 import com.maxguerreiro.cursouml.domain.PagamentoCartao;
@@ -25,6 +26,7 @@ import com.maxguerreiro.cursouml.repositories.CidadeRepository;
 import com.maxguerreiro.cursouml.repositories.ClienteRepository;
 import com.maxguerreiro.cursouml.repositories.EnderecoRepository;
 import com.maxguerreiro.cursouml.repositories.EstadoRepository;
+import com.maxguerreiro.cursouml.repositories.ItemPedidoRepository;
 import com.maxguerreiro.cursouml.repositories.PagamentoRepository;
 import com.maxguerreiro.cursouml.repositories.PedidoRepository;
 import com.maxguerreiro.cursouml.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursoumlApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoumlApplication.class, args);
@@ -124,6 +129,19 @@ public class CursoumlApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		ItemPedido item1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido item2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido item3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(item1, item2));
+		ped2.getItens().addAll(Arrays.asList(item3));
+		
+		p1.getItens().addAll(Arrays.asList(item1));
+		p2.getItens().addAll(Arrays.asList(item3));
+		p3.getItens().addAll(Arrays.asList(item2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(item1, item2, item3));
 	}
 
 }
