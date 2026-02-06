@@ -24,3 +24,10 @@ O objetivo deste projeto é praticar a **análise e modelagem de sistemas antes 
 Desenvolver a capacidade de **pensar o sistema antes de codificar**, facilitando a manutenção, evolução e clareza do software.
 
 Este projeto faz parte do meu processo de formação como desenvolvedor backend.
+
+## Modelagem UML
+
+Este projeto utiliza UML para representar o domínio do sistema antes da implementação.
+
+### Diagrama de Classes
+![Image](https://github.com/user-attachments/assets/b7899cea-30fc-4ecb-a7e5-d0df3f386226)
