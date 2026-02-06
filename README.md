@@ -30,4 +30,4 @@ Este projeto faz parte do meu processo de formação como desenvolvedor backend.
 Este projeto utiliza UML para representar o domínio do sistema antes da implementação.
 
 ### Diagrama de Classes
-![Image](https://github.com/user-attachments/assets/b7899cea-30fc-4ecb-a7e5-d0df3f386226)
+![Image](https://github.com/user-attachments/assets/770baca9-d52c-444a-aa2d-23350c7c024b)
